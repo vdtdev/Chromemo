@@ -53,9 +53,7 @@ var _doc = {
 					$("#memolist").append("<li id='" + data.memos[i].key + "'></li>");
 					$("#" + data.memos[i].key).text(data.memos[i].title);
 					var x = data.memos[i].key;
-					$("#" + data.memos[i].key).bind("mousedown", function() {
-						loadMemo(x);
-					});
+					$("#" + data.memos[i].key).bind("mousedown",function(){loadMemo(x);});
 				}
 
 			}
@@ -65,12 +63,13 @@ var _doc = {
 	"load_note":function(noteKey){
 		chrome.storage.local.get("memos",function(data){
 			if(data.memos!=undefined){
-				for(var i in data.memos){
-					if(i.key==noteKey){
-						_doc.title=i.title;
+				for(i=0;i<data.memos.length;i++){
+					if(data.memos[i].key==noteKey){
+						_doc.title=data.memos[i].title;
 						_doc.saved=false;
-						_doc.save_key=i.key;
-						$("#editbox").val(i.data);
+						_doc.save_key=data.memos[i].key;
+						$("#editbox").val(data.memos[i].data);
+						$("#docord").accordion({active:1});
 					}
 				}
 			}
@@ -87,6 +86,9 @@ var _doc = {
 function loadMemo(memoKey){
 	_doc.load_note(memoKey);
 }
+/**
+ * initialize accordion and save panel events 
+ */
 function initAccordion() {
 	$(function() {
 		$("#docord").accordion({
