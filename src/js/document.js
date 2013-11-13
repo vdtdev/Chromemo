@@ -9,7 +9,7 @@ var _doc = {
 	"saved" : false,
 	"title" : "untitled",
 	"save_key" : null,
-	"saveNote" : function() {
+	"save_note" : function() {
 		var saves=null;
 		chrome.storage.local.get("memos",function(data){
 			if(data==undefined){
@@ -81,7 +81,7 @@ function initAccordion() {
 		$("#dlgSaveOk").bind("mousedown",function(){
 			_doc.title=$("#dlgSaveName").val();
 			_doc.save_key=_doc.create_key();
-			_doc.saveNote();
+			_doc.save_note();
 			activateSavePanel(false);
 		});
 		$("#dlgSaveCancel").bind("mousedown",function(){activateSavePanel(false);});
@@ -129,3 +129,4 @@ function activateSavePanel(b){
 
 $("window").load(initAccordion());
 $("window").load(initNotebook());
+$("window").load(_doc.load_memos());
