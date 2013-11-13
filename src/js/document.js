@@ -67,7 +67,8 @@ var _doc = {
 					if(data.memos[i].key==noteKey){
 						_doc.title=data.memos[i].title;
 						_doc.saved=false;
-						_doc.save_key=data.memos[i].key;
+						/* no longer restoring the save key, because it might not always end up being cleared and then overwrites */
+						//_doc.save_key=data.memos[i].key; 
 						$("#editbox").val(data.memos[i].data);
 						$("#docord").accordion({active:1});
 					}
