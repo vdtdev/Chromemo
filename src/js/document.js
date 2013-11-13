@@ -83,7 +83,9 @@ var _doc = {
 	}
 	
 };
-function loadMemo(memoKey){}
+function loadMemo(memoKey){
+	_doc.load_note(memoKey);
+}
 function initAccordion() {
 	$(function() {
 		$("#docord").accordion({

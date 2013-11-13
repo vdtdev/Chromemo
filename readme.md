@@ -35,4 +35,6 @@ Libraries Used
 Revision Notes
 --------------
   + 2013.11.13@10:20AM - Implemented a basic "load memo" function (`_doc.load_memo`); untested as of yet
+  
+ 
 2013, Wade Harkins. <vdtdev@gmail.com> 
