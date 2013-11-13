@@ -53,7 +53,7 @@ var _doc = {
 					$("#memolist").append("<li id='" + data.memos[i].key + "'></li>");
 					$("#" + data.memos[i].key).text(data.memos[i].title);
 					var x = data.memos[i].key;
-					$("#" + data.memos[i].key).bind("mousedown",function(){loadMemo(x);});
+					$("#" + data.memos[i].key).bind("mousedown",function(){loadMemo(this.id);});
 				}
 
 			}
