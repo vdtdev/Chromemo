@@ -58,8 +58,22 @@ var _doc = {
 				}
 
 			}
-		}); 
+		});
 
+	},
+	"load_note":function(noteKey){
+		chrome.storage.local.get("memos",function(data){
+			if(data.memos!=undefined){
+				for(var i in data.memos){
+					if(i.key==noteKey){
+						_doc.title=i.title;
+						_doc.saved=false;
+						_doc.save_key=i.key;
+						$("#editbox").val(i.data);
+					}
+				}
+			}
+		});
 	},
 	"reset":function(){
 		_doc.title=null;
@@ -80,7 +94,10 @@ function initAccordion() {
 		$("#saveBox").hide();
 		$("#dlgSaveOk").bind("mousedown",function(){
 			_doc.title=$("#dlgSaveName").val();
-			_doc.save_key=_doc.create_key();
+			// only generate a new key if there isn't one already'
+			if(_doc.save_key==null){
+				_doc.save_key=_doc.create_key();
+			}
 			_doc.save_note();
 			activateSavePanel(false);
 		});

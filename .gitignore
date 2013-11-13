@@ -16,6 +16,10 @@ local.properties
 .settings/
 .loadpath
 
+# Chrome Apps
+*.crx
+*.pem
+
 # External tool builders
 .externalToolBuilders/
 
