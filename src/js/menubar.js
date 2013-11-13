@@ -13,6 +13,15 @@ function initMenubar(){
 			text:false, 
 			icons:{primary:"ui-icon-document"}
 		});
+		$("#tbNew").bind("mousedown",
+			function(){
+				$(function(){
+					document.getElementById("editbox").value="";
+					$("#docord").accordion({active:1});
+					_doc.reset();
+				});
+			}
+		);
 		$("#tbSave").button({
 			text:false,
 			icons:{

@@ -19,6 +19,8 @@ var _doc = {
 		saves.push(savedata);
 		var fail=true;
 		chrome.storage.local.set({"memos":saves},function(){fail=false;});
+		_doc.saved=true;
+		updateLastSaved();
 	},
 	"create_key":function(){
 		var d=new Date();
@@ -31,20 +33,26 @@ var _doc = {
 		chrome.storage.local.get("memos",function(i){d=i;});
 		if(d==undefined||d==null||d.memos.length==0){
 			$("#notebook_browser").html("<i>No saved memos found</i>");
-			break;
-		}/*
-		if(d.memos.length==0){
+			return false;
+		}
+		/*if(d.memos.length==0){
 			$("#notebook_browser").html("<i>No saved memos found</i>");
 			return d;
 		}*/
 		else{
-			$("#notebook_browser").html("<ul></ul>");
-			for(m in d.memos){
-				$("#notebook_browser").children()[0].append("<li>"+m.title+"</li>");
-				$("#notebook_browser").first().children().last().bind("mousedown",function(){loadMemo(m.key);});
+			$("#notebook_browser").html("<ul id='memolist'></ul>");
+			for(i=0;i<d.memos.length;i++){
+				$("#memolist").append("<li id='"+m.key+"'></li>");
+				$("#"+d.memos[i].key).text(d.memos[i].title);
+				$("#"+d.memos[i].key).bind("mousedown",function(){loadMemo(d.memos[i].key);});
 			}
 			
 		}
+	},
+	"reset":function(){
+		_doc.title=null;
+		_doc.key=null;
+		_doc.saved=false;
 	}
 	
 };
