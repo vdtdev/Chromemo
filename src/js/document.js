@@ -31,23 +31,23 @@ var _doc = {
 		chrome.storage.local.get("memos",function(i){d=i;});
 		if(d==undefined||d==null){
 			$("#notebook_browser").html("<i>No saved memos found</i>");
-			break;
+			return d;
 		}
 		if(d.memos.length==0){
 			$("#notebook_browser").html("<i>No saved memos found</i>");
-			break;
+			return d;
 		}
 		else{
 			$("#notebook_browser").html("<ul></ul>");
 			for(m in d.memos){
-				$("#notebook_browser").first().append("<li>"+m.title+"</li>");
-				$("#notebook_browser").first().last().bind("mousedown",function(){loadMemo(m.key);});
+				$("#notebook_browser").children()[0].append("<li>"+m.title+"</li>");
+				$("#notebook_browser").first().children().last().bind("mousedown",function(){loadMemo(m.key);});
 			}
 		}
 	}
 	
 };
-
+function loadMemo(memoKey){}
 function initAccordion() {
 	$(function() {
 		$("#docord").accordion({
@@ -66,7 +66,7 @@ function initAccordion() {
 		// auto refresh memo listing
 		$("#docord").on("accordionactivate",function(e,u){
 			if(u.newHeader=="Notebook"){
-				refreshMemos();
+				_doc.load_memos();
 			}});
 	});
 }
