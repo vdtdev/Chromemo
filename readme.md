@@ -4,6 +4,15 @@ Chromemo
 Chromemo is a Memo/Notebook application written for Chrome.
 
 
+Status
+------
+Working
+ + Saving memos
+ + Listing saved memos in notebook
+ 
+To Do:
+ + Implement loading/overwriting existing memos
+
 Data Structures
 ---------------
 
@@ -23,4 +32,4 @@ Libraries Used
 * jQuery
 * jQueryUI
 
-(c) 2013, Wade Harkins. All Rights Reserved.
+2013, Wade Harkins. <vdtdev@gmail.com> 
