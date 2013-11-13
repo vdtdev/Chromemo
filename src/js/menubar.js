@@ -7,6 +7,7 @@ function updateLastSaved(){
 	var cdate = new Date();
 	document.getElementById("lastSaved").innerText="Last Saved " + cdate.toDateString() + " at "+cdate.getHours()+ ":"+cdate.getMinutes();
 }
+
 function initMenubar(){
 	$(function(){
 		$("#tbNew").button({
@@ -35,7 +36,7 @@ function initMenubar(){
 				primary: "ui-icon-folder-open"
 			}
 		});
-		$("#tbBrowse").bind("mousedown",function(){activateNotebook();_doc.load_memos();});
+		$("#tbBrowse").bind("mousedown",function(){$(function(){activateNotebook();_doc.load_memos();});});
 		$("#tbOptions").button({
 			text:false,
 			icons:{primary:"ui-icon-gear"}
