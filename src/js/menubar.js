@@ -26,7 +26,7 @@ function initMenubar(){
 				primary: "ui-icon-folder-open"
 			}
 		});
-		$("#tbBrowse").bind("mousedown",function(){activateNotebook();});
+		$("#tbBrowse").bind("mousedown",function(){activateNotebook();_doc.load_memos();});
 		$("#tbOptions").button({
 			text:false,
 			icons:{primary:"ui-icon-gear"}

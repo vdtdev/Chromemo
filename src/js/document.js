@@ -29,20 +29,21 @@ var _doc = {
 	"load_memos":function(){
 		var d = null;
 		chrome.storage.local.get("memos",function(i){d=i;});
-		if(d==undefined||d==null){
+		if(d==undefined||d==null||d.memos.length==0){
 			$("#notebook_browser").html("<i>No saved memos found</i>");
-			return d;
-		}
+			break;
+		}/*
 		if(d.memos.length==0){
 			$("#notebook_browser").html("<i>No saved memos found</i>");
 			return d;
-		}
+		}*/
 		else{
 			$("#notebook_browser").html("<ul></ul>");
 			for(m in d.memos){
 				$("#notebook_browser").children()[0].append("<li>"+m.title+"</li>");
 				$("#notebook_browser").first().children().last().bind("mousedown",function(){loadMemo(m.key);});
 			}
+			
 		}
 	}
 	
@@ -64,10 +65,10 @@ function initAccordion() {
 		});
 		$("#dlgSaveCancel").bind("mousedown",function(){activateSavePanel(false);});
 		// auto refresh memo listing
-		$("#docord").on("accordionactivate",function(e,u){
+	/*	$("#docord").on("accordionactivate",function(e,u){
 			if(u.newHeader=="Notebook"){
 				_doc.load_memos();
-			}});
+			}});*/
 	});
 }
 /**
