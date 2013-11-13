@@ -1,0 +1,20 @@
+{
+	"manifest_version": 2,
+	"name": "Chromemo",
+	"description": "Chrome-synchronizable memo pad",
+	"version": "1.0",
+	"icons": {
+		"16": "ui/Chromemo-Icon-16.png",
+		"32": "ui/Chromemo-Icon-32.png",
+		"128": "ui/Chromemo-Icon-128.png"
+	},
+
+	"author": "vdtdev",
+	"app": {
+		"background": {
+			"scripts": ["background.js"]
+		}
+	},
+	"permissions": ["storage"]
+}
+

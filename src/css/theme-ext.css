@@ -1,0 +1,104 @@
+/*
+ * jQuery UI 'Smoothness' Theme Extension
+ */
+body{background-color:#8A8A8A;}
+#menuBar{
+	font-family:"Tahoma","Verdana","Arial",sans-serif;
+	font-size:10pt;
+	color:black;
+	/*width:98.5%;*/
+	padding:4px;
+	display:inline-block;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+*+html #menuBar{
+	display:inline;
+}
+
+#lastSaved{
+	text-shadow: 1px 1px 2px #808080;
+}
+
+#menuBar .spacer{width:8px;display:inline;}
+#menuBar label{
+	vertical-align:middle;
+	box-pack:end;
+	padding-right:16px;
+	
+}
+
+#docord{
+	height:280px;
+	z-index: -9999;
+}
+
+#notebook_browser{
+	padding-left:4px;
+	width:100%;
+	height:auto;
+	border-radius:3px;
+	background-color:white;
+	overflow-y:scroll
+	overflow-x:hidden;
+}
+
+.fileListBox ul li{
+	display:inline-block;
+	width:170px;
+	padding-left:2px;
+	padding-right:1px;
+	text-decoration:none;
+}
+
+.fileListBox ul li:hover{
+	border:1px solid #A0A0A0;
+	border-radius:2px;
+}
+
+.footer{
+	height:18px;
+	position:absolute;
+	top:100%;
+	margin-top:-18px;
+	margin-left:-8px;
+	margin-right:0px;
+	width:100%;
+	background-color:#808080;
+	color:black;
+	text-shadow:1px 1px 1px #A0A0A0;
+	border-top:1px solid #999999;
+	padding-left:4px;
+}
+#editbox{
+	width:100%;
+	border:1px solid gray;
+	border-radius:4px;
+	padding:1px;
+	margin:-2px;
+	height:160px;
+}
+#editor{
+	overflow-y:hidden;
+	overflow-x:hidden;
+}
+
+ul.dialogButtons{
+	float:right;
+	display:inline;
+	height:24px;
+	padding:2px;
+}
+ul.dialogButtons li{
+	appearance: button;
+	list-style:none;
+	display:inline;
+	border:1px solid gray;
+	border-radius:4px;
+	padding-left:8px;
+	padding-right:8px;
+}
+
+ul.dialogButtons li:hover{
+	background-color:#E6E6E6;
+}

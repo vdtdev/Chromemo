@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<title>Chromemo</title>
+		<script type="text/javascript" src="lib/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="lib/jquery-ui-1.10.3.custom.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.10.3.custom.min.css">
+		<link rel="stylesheet" type="text/css" href="css/theme-ext.css">
+		<script type="text/javascript" src="js/document.js"></script>
+		<script type="text/javascript" src="js/menubar.js"></script>
+	</head>
+	<body>
+		<div id="menuBar" class="ui-widget-header ui-corner-all">
+			<button id="tbNew">New Note</button>
+			<div class="spacer"> </div>
+			<button id="tbSave">Save Current Note</button>
+			<button id="tbClear">Delete note</button>
+			<button id="tbBrowse">Browse Stored Notes</button>
+			<button id="tbOptions">Settings</button>
+			<button id="tbClose">Close current note</button>
+			<label id="lastSaved">Unsaved</label>
+		</div>
+		<div id="docord">
+			<h3>Notebook</h3>
+			<div id="notebook">
+				<div id="notebook_browser" class="fileListBox"><i>No saved memos found</i></div>
+			</div>
+			<h3>Editor</h3>
+			<div id="editor"> 
+				<textarea id="editbox"> </textarea>
+			</div>
+			<h3 id="saveBoxHeader">Save</h3>
+			<div id="saveBox">
+				<p>
+				<span class="ui-icon ui-icon-disk" style="float: left; margin: 0 7px 50px 0;"> </span>
+				Please provide a title for this memo.
+				</p>
+				<p>
+				<input id="dlgSaveName" type="text" style="border:1px solid gray; border-radius:2px;width:350px">
+				</p>
+				<hr style="border: 1px solid gray">
+				<p>
+					<ul class="dialogButtons">
+						<li id="dlgSaveOk">Ok</li>
+						<li id="dlgSaveCancel">Cancel</li>
+					</ul>
+				</p>
+			</div>
+	
+		</div>
+	<div class="footer">
+		Chromemo v1.0 by vdtdev ~ (c) 2013, All Rights Reserved
+	</div>
+	</body>
+	
+</html>
