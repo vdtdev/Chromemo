@@ -12,14 +12,20 @@ var _doc = {
 	"saveNote" : function() {
 		var saves=null;
 		chrome.storage.local.get("memos",function(data){
-			saves=data;
-			if(saves==null || saves==undefined){
-				saves=new Array();
+			if(data==undefined){
+				data=new Array();
 			}
+			var newdata=new Array();
+			if(data.memos.length!=undefined){
+				for(i=0;i<data.memos.length;i++){
+					newdata.push(data.memos[i]);
+				}
+			}
+			
 			var savedata={title:_doc.title,key:_doc.save_key,data:$("#editbox").val()};
-			saves.memos.concat(savedata);
+			newdata.push(savedata);
 			var fail=true;
-			chrome.storage.local.set({"memos":saves},function(){fail=false;});
+			chrome.storage.local.set({"memos":newdata},function(){fail=false;});
 			_doc.saved=true;
 			updateLastSaved();
 		});
@@ -33,17 +39,21 @@ var _doc = {
 	"load_memos":function(){
 		var d = null;
 		chrome.storage.local.get("memos", function(data) {
-			d = data;
-			if (d.memos == undefined) {
+			if (data.memos == undefined) {
 				$("#notebook_browser").html("<i>No saved memos found</i>");
 				return false;
-			} else {
+			} 
+			else if (data.memos.length==0){
+				$("#notebook_browser").html("<i>No saved memos found</i>");
+				return false;
+			}
+				else {
 				$("#notebook_browser").html("<ul id='memolist'></ul>");
-				for ( i = 0; i < d.memos.length; i++) {
-					$("#memolist").append("<li id='" + d.memos[i].key + "'></li>");
-					$("#" + d.memos[i].key).text(d.memos[i].title);
-					$("#" + d.memos[i].key).bind("mousedown", function() {
-						loadMemo(d.memos[i].key);
+				for ( i = 0; i < data.memos.length; i++) {
+					$("#memolist").append("<li id='" + data.memos[i].key + "'></li>");
+					$("#" + data.memos[i].key).text(data.memos[i].title);
+					$("#" + data.memos[i].key).bind("mousedown", function() {
+						loadMemo(data.memos[i].key);
 					});
 				}
 
@@ -55,6 +65,7 @@ var _doc = {
 		_doc.title=null;
 		_doc.key=null;
 		_doc.saved=false;
+		$("#lastSaved").text("Unsaved");
 	}
 	
 };

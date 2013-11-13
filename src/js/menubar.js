@@ -20,9 +20,8 @@ function initMenubar(){
 					document.getElementById("editbox").value="";
 					$("#docord").accordion({active:1});
 					_doc.reset();
-				});
-			}
-		);
+			});
+			});
 		$("#tbSave").button({
 			text:false,
 			icons:{
