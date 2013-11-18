@@ -36,6 +36,9 @@ var _doc = {
 		key+=d.getUTCDate()+"_"+d.getTime();
 		return key;
 	},
+	/**
+	 * Refreshes the listing of saved memos in the notebook panel 
+	 */
 	"load_memos":function(){
 		var d = null;
 		chrome.storage.local.get("memos", function(data) {
@@ -59,6 +62,48 @@ var _doc = {
 			}
 		});
 
+	},
+	/**
+	 * Returns an array containing all saved notes 
+	 */
+	"read_note_storage":function(){
+		var stored=null;
+		chrome.storage.local.get("memos",function(data){
+			stored=data.memos;
+		});
+		return stored;
+	},
+	"delete_note":function(noteKey){
+		var ni = _doc.find_note(noteKey);
+		if(ni!=-1){
+			var oldData =  _doc.read_note_storage();
+			if(oldData!=undefined){
+				oldData.splice(ni,1);
+				_doc.replace_note_storage(oldData);
+			}
+		}
+	},
+	/**
+	 * Replace all saved notes with the provided array
+	 * @param data Array of note/memo objects 
+	 */
+	"replace_note_storage":function(data){
+		var fail=true;
+		chrome.storage.local.set({"memos":data},function(){fail=false;});
+	},
+	"find_note":function(noteKey){
+		var index=-1;
+		chrome.storage.local.get("memos",function(data){
+			if(data.memos!=undefined){
+				for(i=0;i<data.memos.length;i++){
+					if(data.memos[i].key==noteKey){
+						index=i;
+						break;
+					}
+				}
+			}
+		});
+		return index;
 	},
 	"load_note":function(noteKey){
 		chrome.storage.local.get("memos",function(data){
