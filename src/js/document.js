@@ -16,12 +16,13 @@ var _doc = {
 				data=new Array();
 			}
 			var newdata=new Array();
-			if(data.memos.length!=undefined){
-				for(i=0;i<data.memos.length;i++){
-					newdata.push(data.memos[i]);
+			if(data.memos!=undefined){
+				if(data.memos.length!=undefined){
+					for(i=0;i<data.memos.length;i++){
+						newdata.push(data.memos[i]);
+					}
 				}
 			}
-			
 			var savedata={title:_doc.title,key:_doc.save_key,data:$("#editbox").val()};
 			newdata.push(savedata);
 			var fail=true;
@@ -34,6 +35,7 @@ var _doc = {
 		var d=new Date();
 		var key = "";
 		key+=d.getUTCDate()+"_"+d.getTime();
+		_doc.save_key=key;
 		return key;
 	},
 	/**
@@ -53,57 +55,44 @@ var _doc = {
 				else {
 				$("#notebook_browser").html("<ul id='memolist'></ul>");
 				for ( i = 0; i < data.memos.length; i++) {
-					$("#memolist").append("<li id='" + data.memos[i].key + "'></li>");
+					$("#memolist").append("<li><a href='#' id='" +	data.memos[i].key + 
+					"'></a><span id='x" + data.memos[i].key + 
+					"' class='ui-icon ui-icon-trash' style='float:right;'></span></li>");
 					$("#" + data.memos[i].key).text(data.memos[i].title);
+					//$("#" + data.memos[i].key).append("<span id='x" + data.memos[i].key + "' class='ui-icon ui-icon-trash' style='float:right;'></span>");
 					var x = data.memos[i].key;
 					$("#" + data.memos[i].key).bind("mousedown",function(){loadMemo(this.id);});
+					$("#x" + data.memos[i].key).bind("mousedown",function(){
+						_doc.delete_note(this.id.substr(1));
+						$(this).parent().hide();
+						if(_doc.save_key==this.id.substr(1)){
+							_doc.reset();
+						}
+						});
 				}
 
 			}
 		});
 
 	},
-	/**
-	 * Returns an array containing all saved notes 
-	 */
-	"read_note_storage":function(){
-		var stored=null;
-		chrome.storage.local.get("memos",function(data){
-			stored=data.memos;
-		});
-		return stored;
-	},
 	"delete_note":function(noteKey){
-		var ni = _doc.find_note(noteKey);
-		if(ni!=-1){
-			var oldData =  _doc.read_note_storage();
-			if(oldData!=undefined){
-				oldData.splice(ni,1);
-				_doc.replace_note_storage(oldData);
-			}
-		}
-	},
-	/**
-	 * Replace all saved notes with the provided array
-	 * @param data Array of note/memo objects 
-	 */
-	"replace_note_storage":function(data){
-		var fail=true;
-		chrome.storage.local.set({"memos":data},function(){fail=false;});
-	},
-	"find_note":function(noteKey){
 		var index=-1;
+		var fail=true;
 		chrome.storage.local.get("memos",function(data){
 			if(data.memos!=undefined){
 				for(i=0;i<data.memos.length;i++){
 					if(data.memos[i].key==noteKey){
 						index=i;
-						break;
+						
 					}
 				}
+			    if(index!=-1){
+			    	data.memos.splice(index,1);
+			    	chrome.storage.local.set({"memos":data.memos},function(){fail=false;});
+			    }
 			}
 		});
-		return index;
+		return fail;
 	},
 	"load_note":function(noteKey){
 		chrome.storage.local.get("memos",function(data){
@@ -123,7 +112,7 @@ var _doc = {
 	},
 	"reset":function(){
 		_doc.title=null;
-		_doc.key=null;
+		_doc.save_key=null;
 		_doc.saved=false;
 		$("#lastSaved").text("Unsaved");
 	}

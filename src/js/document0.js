@@ -28,6 +28,27 @@ var _doc = {
 	}
 	
 };
+/* Removed from _doc
+	/**
+	 * Returns an array containing all saved notes 
+	 * /
+	"read_note_storage":function(){
+		var stored=null;
+		chrome.storage.local.get("memos",function(data){
+			stored=data;
+		});
+		return stored;
+	},
+	/**
+	 * Replace all saved notes with the provided array
+	 * @param data Array of note/memo objects 
+	 * /
+	"replace_note_storage":function(data){
+		var fail=true;
+		chrome.storage.local.set({"memos":data},function(){fail=false;});
+	},
+	*/
+
 /**
  * jQuery up the Accordion 
  */

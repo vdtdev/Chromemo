@@ -43,6 +43,12 @@ body{background-color:#8A8A8A;}
 	overflow-x:hidden;
 }
 
+.fileListBox{
+    display:
+}
+.no-wrap{
+    display:inline;
+}
 .fileListBox ul li{
 	display:inline-block;
 	width:170px;
