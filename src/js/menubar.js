@@ -42,7 +42,8 @@ function initMenubar(){
 		});
 		$("#tbClear").button({
 			text:false,
-			icons:{primary:"ui-icon-trash"}
+			icons:{primary:"ui-icon-trash"},
+			disabled:true
 		});
 		$("#tbClear").bind("mousedown",function(){document.getElementById("editbox").value="";});
 		$("#tbClose").button({
