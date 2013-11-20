@@ -8,9 +8,12 @@ Status
 Working
  + Saving memos
  + Listing saved memos in notebook
+ + Deleting memos (using trash can icon displayed to right of memo title in notebook browser)
  
 To Do:
- + Implement loading/overwriting existing memos
+ + Implement overwriting/modifying existing memos
+ + Implement settings panel, and come up with some settings
+ + Restore "last saved" message when loading a saved memo
 
 Data Structures
 ---------------
