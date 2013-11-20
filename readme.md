@@ -1,4 +1,4 @@
-[Image:/src/ui/Chromemo-Icon-32.png]Chromemo
+![alt text](/src/ui/Chromemo-Icon-32.png "Chromemo")Chromemo
 =========
 
 Chromemo is a Memo/Notebook application written for Chrome.
