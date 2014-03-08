@@ -10,6 +10,12 @@ var _doc = {
 	"title" : "untitled",
 	"save_key" : null,
 	"save_note" : function() {
+		_doc.note_exists(_doc.title);
+		// note already exists, so lets overwrite it!
+		if(_globals.overwrite.exists==true){
+			_doc.delete_note(_globals.overwrite.key);
+			_doc.save_key=_globals.overwrite.key;
+		}
 		var saves=null;
 		chrome.storage.local.get("memos",function(data){
 			if(data==undefined){
@@ -110,14 +116,50 @@ var _doc = {
 			}
 		});
 	},
+	"note_exists":function(noteName){
+		chrome.storage.local.get("memos",function(data){
+			if(data.memos!=undefined){ // memos exist
+				for(i=0;i<data.memos.length;i++){
+					if(data.memos[i].title==noteName){
+						_globals.overwrite.exists=true;
+						_globals.overwrite.index=i;
+						_globals.overwrite.key=data.memos[i].key;
+					}
+					else{
+						_globals.overwrite.exists=false;
+						_globals.overwrite.index=-1;
+						_globals.overwrite.key=null;
+					}
+				} 
+			}
+		});
+		//return _globals.overwrite;
+	},
 	"reset":function(){
 		_doc.title=null;
 		_doc.save_key=null;
 		_doc.saved=false;
 		$("#lastSaved").text("Unsaved");
-	}
-	
+	}	
 };
+
+/**
+ * Global variable storage; for persistance of data outside Chrome API calls 
+ */
+var _globals={
+	/**
+	 * Store information about an existing memo that is going to be overwritten
+	 * index => index of memo in data
+	 * key => existing key of memo
+	 * exists => indicates if the last _doc.note_exists call found a matching title 
+	 */
+	"overwrite" : {
+		"exists":false,
+		"index":-999,
+		"key":null}
+};
+
+
 function loadMemo(memoKey){
 	_doc.load_note(memoKey);
 }
