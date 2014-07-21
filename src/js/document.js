@@ -139,6 +139,7 @@ var _doc = {
 		_doc.title=null;
 		_doc.save_key=null;
 		_doc.saved=false;
+		$("#dlgSaveName").text("");
 		$("#lastSaved").text("Unsaved");
 	}	
 };
@@ -229,3 +230,6 @@ function activateSavePanel(b){
 $("window").load(initAccordion());
 $("window").load(initNotebook());
 $("window").load(_doc.load_memos());
+
+
+
