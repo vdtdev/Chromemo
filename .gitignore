@@ -1,3 +1,9 @@
+
+# art
+*.psd
+# archived source code
+*.7z
+
 #################
 ## Eclipse
 #################
@@ -219,4 +225,5 @@ pip-log.txt
 .mr.developer.cfg
 
 # artwork
-*.psd
+*.psdchromemo-build-20131120src.7z
+chromemo-build-20131120src.7z
