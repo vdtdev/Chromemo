@@ -40,6 +40,8 @@ chrome.app.runtime.onLaunched.addListener(function() {
 			'width' : 640,
 			'height' : 400
 		},
+		'outerBounds':
+		{'maxHeight':400}
 	});
 	/*	'maxWidth':640,
 		'maxHeight':400
